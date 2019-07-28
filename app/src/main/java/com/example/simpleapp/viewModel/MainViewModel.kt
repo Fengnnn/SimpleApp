@@ -1,20 +1,22 @@
 package com.example.simpleapp.viewModel
 
 import androidx.databinding.ObservableField
-import com.example.simpleapp.view.ViewCallBack.CompletedListener
+import com.example.simpleapp.view.ViewCallBack.ICompletedListener
 import android.view.View
-import com.example.simpleapp.model.data.retrofit.RetroHandler
+import com.example.simpleapp.model.data.retrofit.BaseRetrofitBuilder
+import com.example.simpleapp.model.data.retrofit.MovieRetrofitService
+import com.example.simpleapp.model.data.retrofit.TMDbObservableBuilder
 import com.example.simpleapp.model.entity.MovieInfo
 import com.example.simpleapp.view.Adapter.MovieAdapter
-import com.example.simpleapp.view.ViewCallBack.ViewSubscribedListener
+import com.example.simpleapp.view.ViewCallBack.IViewSubscribedListener
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 
 class MainViewModel(
     private val movieAdapter: MovieAdapter,
-    private val completedListener: CompletedListener,
-    private val viewSubscribedListener: ViewSubscribedListener
+    private val completedListener: ICompletedListener,
+    private val viewSubscribedListener: IViewSubscribedListener
 ) {
     lateinit var contentViewVisibility: ObservableField<Int>
     lateinit var progressBarVisibility: ObservableField<Int>
@@ -23,18 +25,20 @@ class MainViewModel(
 
     init {
         initData()
-        getMovies()
+        getMovies(getMovieObserver())
     }
 
     /**
      * set up subscriber and trigger api call to fetch popular move info
      */
-    private fun getMovies() {
-        val observable = RetroHandler.getMoviesObservable()
-        observable.subscribe(getMovieSubscriber())
+    private fun getMovies(movieObserver: Observer<MovieInfo>) {
+        val observable = TMDbObservableBuilder(
+            MovieRetrofitService(BaseRetrofitBuilder()).buildMovieService()
+        ).getMoviesObservable()
+        observable.subscribe(movieObserver)
     }
 
-    private fun getMovieSubscriber(): Observer<MovieInfo> {
+    private fun getMovieObserver(): Observer<MovieInfo> {
         return object : BaseObserver<MovieInfo>() {
             override fun onNext(t: MovieInfo) {
                 movieAdapter.addItem(t)
@@ -43,7 +47,7 @@ class MainViewModel(
     }
 
     fun refreshData() {
-        getMovies()
+        getMovies(getMovieObserver())
     }
 
     private fun initData() {

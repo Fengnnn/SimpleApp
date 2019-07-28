@@ -1,6 +1,6 @@
 package com.example.simpleapp.model.entity
 
-data class PopularResponse<T>(
+data class MoviesResponse<T>(
     val page: Int,
     val total_results: Int,
     val total_pages: Int,

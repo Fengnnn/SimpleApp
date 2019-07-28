@@ -1,5 +1,5 @@
 package com.example.simpleapp.view.ViewCallBack
 
-interface CompletedListener {
+interface ICompletedListener {
 fun onCompleted()
 }

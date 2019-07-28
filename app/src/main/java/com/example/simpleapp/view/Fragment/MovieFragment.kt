@@ -13,10 +13,10 @@ import com.example.simpleapp.R
 import com.example.simpleapp.databinding.MovieFragmentBinding
 import com.example.simpleapp.view.Adapter.BaseAdapter
 import com.example.simpleapp.view.Adapter.MovieAdapter
-import com.example.simpleapp.view.ViewCallBack.CompletedListener
+import com.example.simpleapp.view.ViewCallBack.ICompletedListener
 import com.example.simpleapp.viewModel.MainViewModel
 
-class MovieFragment : BaseFragment(), CompletedListener, SwipeRefreshLayout.OnRefreshListener {
+class MovieFragment : BaseFragment(), ICompletedListener, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var viewModel: MainViewModel
     private lateinit var movieFragmentBinding: MovieFragmentBinding
     private lateinit var movieAdapter: MovieAdapter

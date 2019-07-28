@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.simpleapp.R
-import com.example.simpleapp.model.data.MovieApi
+import com.example.simpleapp.model.data.IMovieApiService
 
 /**
  * Put the image bindingAdapter in a separate file to make it run as public static function
@@ -13,7 +13,7 @@ import com.example.simpleapp.model.data.MovieApi
 @BindingAdapter("bind:imageUrl")
     fun loadImage(imageView: ImageView, url: String) {
         Glide.with(imageView.context)
-            .load(MovieApi.getImageUrl(url))
+            .load(IMovieApiService.getImageUrl(url))
             .placeholder(R.drawable.defaultcover)
             .error(R.drawable.defaultcover)
             .into(imageView)

@@ -2,6 +2,6 @@ package com.example.simpleapp.view.ViewCallBack
 
 import io.reactivex.disposables.Disposable
 
-interface ViewSubscribedListener {
+interface IViewSubscribedListener {
     fun addDisposable(d: Disposable)
 }
