@@ -1,4 +1,4 @@
-package com.example.simpleapp.view
+package com.example.simpleapp.view.Fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,7 +13,6 @@ import com.example.simpleapp.R
 import com.example.simpleapp.databinding.MovieFragmentBinding
 import com.example.simpleapp.view.Adapter.BaseAdapter
 import com.example.simpleapp.view.Adapter.MovieAdapter
-import com.example.simpleapp.view.Fragment.BaseFragment
 import com.example.simpleapp.view.ViewCallBack.CompletedListener
 import com.example.simpleapp.viewModel.MainViewModel
 
