@@ -11,9 +11,9 @@ import retrofit2.http.Query
 interface MovieApi {
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/movie/"
-        const val IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500"
+        private const val IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500"
         const val API_KEY = "c06e14cd13b2c6373fdc8f9f3dd47eb3"
-        fun getImageUrl(urlPath:String):String{
+        fun getImageUrl(urlPath: String): String {
             return IMAGE_URL_BASE + urlPath
         }
     }
