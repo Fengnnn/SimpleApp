@@ -3,14 +3,14 @@ package com.example.simpleapp.viewModel
 import androidx.databinding.ObservableField
 import com.example.simpleapp.view.ViewCallBack.ICompletedListener
 import android.view.View
-import com.example.simpleapp.model.data.retrofit.BaseRetrofitBuilder
-import com.example.simpleapp.model.data.retrofit.MovieRetrofitService
-import com.example.simpleapp.model.data.retrofit.TMDbObservableBuilder
+import com.example.simpleapp.di.dagger.DaggerAppComponent
 import com.example.simpleapp.model.entity.MovieInfo
 import com.example.simpleapp.view.Adapter.MovieAdapter
 import com.example.simpleapp.view.ViewCallBack.IViewSubscribedListener
+import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
 
 class MainViewModel(
@@ -22,8 +22,10 @@ class MainViewModel(
     lateinit var progressBarVisibility: ObservableField<Int>
     lateinit var errorInfoLayoutVisibility: ObservableField<Int>
     lateinit var exception: ObservableField<String>
-
+    @Inject
+    lateinit var  movieObservable: Observable<MovieInfo>
     init {
+       DaggerAppComponent.builder().build().inject(this)
         initData()
         getMovies(getMovieObserver())
     }
@@ -32,10 +34,7 @@ class MainViewModel(
      * set up subscriber and trigger api call to fetch popular move info
      */
     private fun getMovies(movieObserver: Observer<MovieInfo>) {
-        val observable = TMDbObservableBuilder(
-            MovieRetrofitService(BaseRetrofitBuilder()).buildMovieService()
-        ).getMoviesObservable()
-        observable.subscribe(movieObserver)
+        movieObservable.subscribe(movieObserver)
     }
 
     private fun getMovieObserver(): Observer<MovieInfo> {
@@ -83,6 +82,4 @@ class MainViewModel(
             exception.set(e.message)
         }
     }
-
-
 }
