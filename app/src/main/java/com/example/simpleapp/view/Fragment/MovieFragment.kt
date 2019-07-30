@@ -24,7 +24,7 @@ class MovieFragment : BaseFragment(), ICompletedListener, SwipeRefreshLayout.OnR
     lateinit var movieFragmentBinding: MovieFragmentBinding
     @Inject
     lateinit var movieAdapter: MovieAdapter
-    lateinit var fragmentActions: FragmentActions
+    lateinit var fragmentActions: IFragmentAction
 
     companion object {
         val instance: MovieFragment
@@ -42,7 +42,6 @@ class MovieFragment : BaseFragment(), ICompletedListener, SwipeRefreshLayout.OnR
 
 
     private fun initData(appComponent: AppComponent) {
-
         val viewModel: MainViewModel = appComponent.getMainViewModel()
         fragmentActions = appComponent.getFragmentActions()
         movieFragmentBinding.viewModel = viewModel
