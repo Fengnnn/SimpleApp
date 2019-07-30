@@ -5,7 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.Observer
 import javax.inject.Inject
 
-class FragmentActions @Inject constructor(
+class FragmentAction @Inject constructor(
     private val movieObservable: Observable<MovieInfo>,
     private val movieObserver: Observer<MovieInfo>
 ) : IFragmentAction {
