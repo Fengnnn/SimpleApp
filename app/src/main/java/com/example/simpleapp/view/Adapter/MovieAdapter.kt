@@ -12,7 +12,7 @@ import com.example.simpleapp.databinding.MovieItemBinding
 import com.example.simpleapp.model.entity.MovieInfo
 
 
-class MovieAdapter : BaseAdapter() {
+class MovieAdapter: BaseAdapter<MovieInfo>() {
     private val movies: MutableList<MovieInfo>
 
     init {
@@ -37,7 +37,7 @@ class MovieAdapter : BaseAdapter() {
         return movies.size
     }
 
-    fun addItem(movie: MovieInfo) {
+    override fun addItem(movie: MovieInfo) {
         movies.add(movie)
         notifyItemInserted(movies.size - 1)
     }
