@@ -19,5 +19,5 @@ interface IMovieApiService {
     }
 
     @GET("popular")
-    fun getMovies(@Query("api_key") apiKey: String): Observable<MoviesResponse<List<MovieInfo>>>
+    fun getMovies(@Query("api_key") apiKey: String = API_KEY): Observable<MoviesResponse<List<MovieInfo>>>
 }

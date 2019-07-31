@@ -17,7 +17,7 @@ import javax.inject.Singleton
 class FragmentViewModel(private val movieFragment: MovieFragment,private val view: View) {
     @Provides
     @Singleton
-    fun provideMovieFragmentBinding() = MovieFragmentBinding.bind(view)
+    fun provideMovieFragmentBinding(): MovieFragmentBinding = MovieFragmentBinding.bind(view)
 
     @Provides
     @Singleton
