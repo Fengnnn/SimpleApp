@@ -7,13 +7,17 @@ import com.example.simpleapp.mockModule.dataObjectMock.ObserverObjectMock
 import com.example.simpleapp.model.data.retrofit.TMDbObservableBuilder
 import com.example.simpleapp.model.entity.MovieInfo
 import com.example.simpleapp.view.Fragment.FragmentAction
-import junit.framework.Assert.assertEquals
+import io.reactivex.disposables.CompositeDisposable
+import junit.framework.TestCase.assertEquals
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import setUpRxSchedulers
 
 
 class FragmentActionTest {
+    private var disposables = CompositeDisposable()
+
     @Before
     fun setUp() {
         setUpRxSchedulers()
@@ -65,12 +69,18 @@ class FragmentActionTest {
         assertEquals("The mapper function returned a null value.", observer.errorMessage)
     }
 
-    private fun run(responseString:String):ObserverObjectMock<MovieInfo> {
+    private fun run(responseString: String): ObserverObjectMock<MovieInfo> {
         val movieApiService = RetrofitMock(responseString).provideMovieApiService()
         val observable = TMDbObservableBuilder(movieApiService).getMoviesObservable()
         val observer: ObserverObjectMock<MovieInfo> = ViewModuleMock().provideMovieObserver()
         //run
         FragmentAction(observable, observer).refreshData()
+        disposables.add(observer.disposable)
         return observer
+    }
+
+    @After
+    fun tearDown() {
+        disposables.clear()
     }
 }
