@@ -9,7 +9,9 @@ class ObserverObjectMock<T> : Observer<T> {
     var resultList: MutableList<T> = ArrayList()
     var completed: Boolean = false
     var subScribed: Boolean = false
+    lateinit var disposable:Disposable
     override fun onSubscribe(d: Disposable) {
+        disposable = d
         subScribed = true
     }
 

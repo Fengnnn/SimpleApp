@@ -6,13 +6,13 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.CompositeDisposable
 
 abstract  class BaseFragment: Fragment(),IViewSubscribedListener {
-    private var composite = CompositeDisposable()
+    private var disposable = CompositeDisposable()
     override fun addDisposable(d: Disposable){
-        this.composite.add(d)
+        this.disposable.add(d)
     }
     override fun onDestroy() {
         super.onDestroy()
-        this.composite.clear()
+        this.disposable.clear()
     }
 
 }
