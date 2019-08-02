@@ -5,15 +5,15 @@ import com.example.simpleapp.model.entity.MovieInfo
 
 class MovieViewModel(private val movie: MovieInfo) : ViewModel() {
 
-    fun getTitle(): String? {
+    fun getTitle(): String{
         return movie.title
     }
 
-    fun getRating(): String? {
+    fun getRating(): String {
         return movie.popularity
     }
 
-    fun getReleaseDate(): String? {
+    fun getReleaseDate(): String{
         return movie.release_date
     }
 

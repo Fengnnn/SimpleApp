@@ -30,24 +30,17 @@
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
+                    android:layout_margin="10dp"
                     android:orientation="vertical">
+
                 <TextView
                         android:textColor="@android:color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{viewModel.title}"
-                        android:textSize="12sp"/>
+                        android:layout_marginTop="7dp"
+                        android:textSize="13sp"/>
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="12sp"
-                        android:text="@{viewModel.rating}"
-                        android:id="@+id/movie_type_text"
-                        android:layout_marginTop="6dp"
-                />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -55,8 +48,29 @@
                         android:textSize="12sp"
                         android:text="@{viewModel.releaseDate}"
                         android:id="@+id/year_text"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="7dp"
                 />
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="20dp"
+                              android:layout_marginTop="7dp"
+                              android:orientation="horizontal">
+                    <TextView
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="@string/rating"
+                            android:textSize="12sp"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="12sp"
+                            android:text="@{viewModel.rating}"
+                            android:id="@+id/movie_type_text"/>
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
